@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snakebite — Perspective Change</title>
+<style>
+  :root{
+    --ink:#141414; --muted:#5a5a5a; --line:#111;
+    --right:#2e7d32; --right-bg:#eef6ee; --wrong:#b23b30; --wrong-bg:#f7ece9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:#d9d9d9; color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; padding:28px 14px 70px;}
+  .frame{max-width:780px; margin:0 auto; background:#fff; border:7px solid var(--line); padding:30px 34px 40px;}
+
+  header h1{font-size:2.4rem; font-weight:800; margin:0 0 2px; letter-spacing:-.01em;}
+  header .sub{color:var(--muted); margin:0 0 4px; font-size:1.0rem;}
+  .rule{height:3px; background:var(--line); margin:14px 0 22px;}
+
+  .recap{border:1px solid #cfcfcf; border-left:6px solid var(--line); background:#f4f4f4; border-radius:6px; padding:13px 16px; margin-bottom:24px; font-size:0.95rem;}
+  .recap .lbl{font-size:0.74rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;}
+
+  .legend{font-size:0.92rem; color:var(--muted); margin-bottom:24px;}
+
+  .q{margin:26px 0; padding-top:22px; border-top:1px solid #e2e2e2;}
+  .q-num{font-size:0.74rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .q-prompt{font-weight:700; margin:0 0 10px; font-size:1.0rem;}
+
+  .opt{display:block; width:100%; text-align:left; background:#fff; border:1.5px solid #c9c9c9; border-radius:8px; padding:10px 14px; margin:6px 0; cursor:pointer; font-size:0.95rem; font-family:inherit; color:var(--ink); transition:.12s;}
+  .opt:hover{border-color:var(--ink);}
+  .opt.correct{border-color:var(--right); background:var(--right-bg);}
+  .opt.wrong{border-color:var(--wrong); background:var(--wrong-bg);}
+  .opt .mark{font-weight:800; margin-right:6px;}
+  .opt.correct .mark::before{content:"✓ "; color:var(--right);}
+  .opt.wrong .mark::before{content:"✗ "; color:var(--wrong);}
+
+  .fb{display:none; margin-top:8px; font-size:0.92rem; padding:10px 13px; border-radius:7px; background:#f0f0f0; border-left:5px solid var(--line);}
+  .fb.show{display:block;}
+
+  textarea.answer{width:100%; min-height:96px; border:1.5px solid #c9c9c9; border-radius:8px; padding:11px 13px; font-family:inherit; font-size:0.95rem; color:var(--ink); resize:vertical; margin-bottom:8px;}
+  textarea.answer:focus{outline:none; border-color:var(--ink);}
+  .reveal-btn{background:var(--ink); color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.86rem; padding:8px 16px; cursor:pointer; font-family:inherit;}
+  .reveal-btn:hover{background:#000;}
+  .model{display:none; margin-top:12px; padding:14px 16px; border-radius:9px; background:#141414; color:#f4f4f4; font-size:0.93rem;}
+  .model.show{display:block;}
+  .model .lbl{font-size:0.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#bdbdbd; margin-bottom:6px;}
+  .model ul{margin:6px 0 0; padding-left:18px;}
+  .model li{margin:5px 0;}
+</style>
+</head>
+<body>
+<div class="frame">
+  <header>
+    <h1>Snakebite</h1>
+    <p class="sub">Applying perspective change to the Planet Money "Snakebite" story.</p>
+  </header>
+  <div class="rule"></div>
+
+  <div class="recap">
+    <div class="lbl">The story in brief</div>
+    In 2001, snake expert Joe Slowinski died in the Myanmar jungle from a krait bite — antivenom couldn't reach him, because it needs refrigeration and must match the exact snake. Over 100,000 people die of snakebite every year, almost always far from a hospital, and there had been no new treatment in a century. A decade later, ER doctor Matt Lewin, prepping for a similar expedition, packed <b>neostigmine</b> — a drug that reverses paralysis — figuring it could buy a bitten victim time to keep breathing. When a field researcher refused to inject it ("I don't want to stick a needle in someone in the jungle"), Lewin kept explaining the needle procedure. Then, on the flight home, it hit him: what if you skip the needle and just spray it up the nose?
+  </div>
+
+  <div class="legend">
+    <b>How this works:</b> for each multiple-choice question, click an answer — it turns <span style="color:var(--right);font-weight:700;">green</span> if it fits and tells you why; click around to compare. For the open questions, write your own answer first, then reveal a model answer to compare against. Nothing is graded.
+  </div>
+
+  <!-- Q1 -->
+  <div class="q">
+    <div class="q-num">Question 1 · Situation, perspective, story</div>
+    <p class="q-prompt">Over 100,000 people die of snakebite every year, and that was true long before Matt Lewin came along. So what actually changed when he found his approach?</p>
+    <button class="opt" data-correct="false" data-fb="The situation — people dying far from help — didn't change; it had been true for a century. What moved was how Lewin <i>interpreted</i> it."><span class="mark"></span>The situation changed — snakebites suddenly became more common.</button>
+    <button class="opt" data-correct="true" data-fb="Right. The situation held steady. Lewin changed the <b>perspective</b> — a delivery problem, not a venom problem — and a new <b>story</b> about treatment followed from it."><span class="mark"></span>The perspective changed — Lewin interpreted the same situation differently, and a new story about treatment followed.</button>
+    <button class="opt" data-correct="false" data-fb="The science was largely already there (neostigmine existed). What changed first was the perspective; the new story came out of it, not the other way around."><span class="mark"></span>The story changed first — new lab discoveries about venom made a new treatment possible.</button>
+    <button class="opt" data-correct="false" data-fb="The situation was stable — the world didn't change. The shift happened in how Lewin saw it."><span class="mark"></span>The situation changed — new venomous species were discovered.</button>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q">
+    <div class="q-num">Question 2 · The default perspective</div>
+    <p class="q-prompt">For a hundred years, "treating a snakebite" meant essentially one thing. What was the default perspective the whole field shared?</p>
+    <button class="opt" data-correct="true" data-fb="Right. 'Treatment = antivenom' was the building block everyone reused — and reusing it quietly ruled out everything antivenom can't do: reach remote places, work without a fridge, work without a needle."><span class="mark"></span>Neutralize the venom with antivenom — matched to the exact snake, refrigerated, injected.</button>
+    <button class="opt" data-correct="false" data-fb="That's Lewin's <i>new</i> perspective — the plot twist. The hundred-year default was antivenom."><span class="mark"></span>Keep the victim breathing until they can reach a hospital.</button>
+    <button class="opt" data-correct="false" data-fb="Not the default — the field's fixed idea wasn't prevention, it was antivenom as the treatment."><span class="mark"></span>Prevent bites with better boots and education.</button>
+    <button class="opt" data-correct="false" data-fb="Not the default — and in remote jungle there often is no fast way to a hospital. The fixed idea was antivenom."><span class="mark"></span>Get victims to a hospital faster by helicopter.</button>
+  </div>
+
+  <!-- Q3 (open) -->
+  <div class="q">
+    <div class="q-num">Question 3 · Old perspective → new perspective</div>
+    <p class="q-prompt">List as many assumptions as you can in the <b>old</b> perspective on treating snakebite — and for each, how Lewin saw it differently. Then reveal a model answer to compare.</p>
+    <textarea class="answer" placeholder="Old assumption → how Lewin saw it differently…"></textarea>
+    <button class="reveal-btn" onclick="toggleModel(this)">Show a model answer</button>
+    <div class="model">
+      <div class="lbl">A model answer (many are possible)</div>
+      <ul>
+        <li><b>Old:</b> you must identify the snake and match it to a specific antivenom. <b>New:</b> a general drug (neostigmine) counters the paralysis, whatever the snake.</li>
+        <li><b>Old:</b> treatment must be injected by a trained professional. <b>New:</b> a nasal spray almost anyone can give.</li>
+        <li><b>Old:</b> the goal is to neutralize the venom. <b>New:</b> the goal is to buy time to keep breathing and reach help.</li>
+        <li><b>Old:</b> a new treatment needs Big Pharma and huge trials. <b>New:</b> an ER doctor, a rock musician, and a university lab can move it forward.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q">
+    <div class="q-num">Question 4 · Adding vs. changing the perspective</div>
+    <p class="q-prompt">When the field researcher refused the needle, Lewin's first response was to explain the needle procedure more carefully — which needle, mix this with that. What was he doing?</p>
+    <button class="opt" data-correct="false" data-fb="Not yet — he was still committed to the needle. The real change came later, on the plane."><span class="mark"></span>Changing his perspective — questioning whether a needle was needed at all.</button>
+    <button class="opt" data-correct="true" data-fb="Right. He stayed inside his perspective (the drug gets injected) and tried to make it work harder. That's the easy move — add to the perspective rather than change it."><span class="mark"></span>Adding to his perspective — making his existing approach work harder, without questioning it.</button>
+    <button class="opt" data-correct="false" data-fb="That's what he did <i>later</i>, on the plane. In this moment he was still defending the needle, not abandoning it."><span class="mark"></span>Abandoning his core assumption about how the drug gets delivered.</button>
+    <button class="opt" data-correct="false" data-fb="The new story came only after he changed the perspective. Here he was reinforcing the old one."><span class="mark"></span>Telling a completely new story about what treatment could be.</button>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q">
+    <div class="q-num">Question 5 · The plot twist</div>
+    <p class="q-prompt">On the plane: "What if you could just get rid of the needles… shoot this up your nose?" Which assumption did he finally abandon?</p>
+    <button class="opt" data-correct="true" data-fb="Right. Dropping 'it must be injected' restructured everything — no needle means no trained injector, which is exactly what makes the treatment portable and usable by anyone."><span class="mark"></span>That the drug has to be injected.</button>
+    <button class="opt" data-correct="false" data-fb="Close — but he'd already let that go when he packed a general drug instead of antivenom. The plane twist was specifically about the needle."><span class="mark"></span>That antivenom is the only possible treatment.</button>
+    <button class="opt" data-correct="false" data-fb="He'd already abandoned that — neostigmine works regardless of species. The new twist was the needle."><span class="mark"></span>That you must identify the snake first.</button>
+    <button class="opt" data-correct="false" data-fb="He never doubted that. The twist was about <i>how</i> to deliver treatment, not whether it mattered."><span class="mark"></span>That snakebite is a serious problem worth solving.</button>
+  </div>
+
+  <!-- Q6 (open) -->
+  <div class="q">
+    <div class="q-num">Question 6 · Why it's hard</div>
+    <p class="q-prompt">In your own words: why was it so hard for Lewin — and the whole field — to drop the needle, when in hindsight it looks obvious? Write your answer, then compare.</p>
+    <textarea class="answer" placeholder="Why is changing a perspective so hard…"></textarea>
+    <button class="reveal-btn" onclick="toggleModel(this)">Show a model answer</button>
+    <div class="model">
+      <div class="lbl">A model answer</div>
+      We don't just make assumptions — we commit to them and build our craft on them. Injection was Lewin's training as an ER doctor; antivenom was the field's hundred-year identity. A committed perspective feels like reality rather than a choice, so the easy path is to make it work harder (explain the needle better) instead of questioning it. Changing a perspective means admitting the structure you trusted was optional all along — which is exactly what makes creativity difficult.
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.q').forEach(function(q){
+  var opts = q.querySelectorAll('.opt');
+  if(!opts.length) return;
+  var fb = q.querySelector('.fb');
+  if(!fb){ fb = document.createElement('div'); fb.className = 'fb'; q.appendChild(fb); }
+  opts.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      opts.forEach(function(o){ o.classList.remove('correct','wrong'); });
+      opt.classList.add(opt.dataset.correct === 'true' ? 'correct' : 'wrong');
+      fb.innerHTML = opt.dataset.fb;
+      fb.classList.add('show');
+    });
+  });
+});
+function toggleModel(btn){
+  var m = btn.parentElement.querySelector('.model');
+  var on = m.classList.toggle('show');
+  btn.textContent = on ? 'Hide model answer' : 'Show a model answer';
+}
+</script>
+</body>
+</html>

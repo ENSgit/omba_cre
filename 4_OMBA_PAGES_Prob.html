@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applying PAGES and CALM to Your Problem</title>
+<style>
+  :root{
+    --bg:#faf9f6; --ink:#1a1a1a; --muted:#5b5b5b;
+    --yellow:#ffd400; --paste-bg:#23272e; --paste-ink:#f4f4f4; --accent:#b89a00;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; padding:32px 18px 80px;
+  }
+  .wrap{max-width:760px; margin:0 auto;}
+  header h1{font-size:1.9rem; margin:0 0 6px; line-height:1.15;}
+  header .sub{color:var(--muted); margin:0 0 22px; font-size:1.02rem;}
+
+  .keys{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .key{flex:1 1 220px; background:#fff; border:1px solid #e4e2da; border-radius:12px; padding:12px 16px;}
+  .key-title{font-size:0.78rem; font-weight:800; letter-spacing:.12em; color:var(--muted); margin-bottom:8px;}
+  .key ul{margin:0; padding:0; list-style:none;}
+  .key li{display:flex; align-items:center; gap:10px; margin:5px 0; font-size:0.95rem;}
+  .key li .ltr{
+    flex:none; width:24px; height:24px; border-radius:6px; background:var(--yellow); color:#1a1a1a;
+    font-weight:800; display:flex; align-items:center; justify-content:center; font-size:0.86rem;
+  }
+
+  .legend{background:#fff; border:1px solid #e4e2da; border-radius:12px; padding:14px 18px; margin-bottom:18px; font-size:0.92rem;}
+  .legend strong{display:block; margin-bottom:8px; font-size:0.86rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted);}
+  .legend ul{margin:0; padding-left:0; list-style:none;}
+  .legend li{margin:6px 0; display:flex; gap:10px; align-items:flex-start;}
+  .chip{flex:none; font-size:0.74rem; font-weight:700; padding:3px 9px; border-radius:20px; margin-top:1px;}
+  .chip.paste{background:var(--paste-bg); color:var(--yellow);}
+  .chip.think{background:var(--yellow); color:#1a1a1a; border:2px solid #1a1a1a;}
+  .ph-demo{background:var(--yellow); color:#1a1a1a; padding:1px 6px; border-radius:5px; font-weight:600;}
+
+  /* Flow stepper */
+  .flow{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 30px;}
+  .flow-step{flex:1 1 170px; background:#fff; border:1px solid #e4e2da; border-radius:12px; padding:12px 14px; display:flex; gap:12px; align-items:center;}
+  .flow-step .n{flex:none; width:34px; height:34px; border-radius:50%; background:var(--yellow); color:#1a1a1a; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:1rem;}
+  .flow-step .t{font-size:0.9rem; line-height:1.25;}
+  .flow-step .t b{display:block; margin-bottom:2px;}
+
+  /* ONE label system */
+  .section-label{font-size:1.12rem; font-weight:800; color:var(--ink); margin:36px 0 6px;}
+  .section-note{color:var(--muted); font-size:0.92rem; margin:0 0 12px;}
+  .tool-label{font-size:0.98rem; font-weight:700; color:var(--ink); margin:22px 0 8px;}
+  .tool-label .fw{color:var(--accent); font-weight:700;}
+
+  .step{margin:0 0 14px;}
+
+  .paste{background:var(--paste-bg); color:var(--paste-ink); border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.12);}
+  .paste .head{display:flex; justify-content:space-between; align-items:center; padding:10px 16px; background:rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.08);}
+  .paste .tag{font-size:0.76rem; font-weight:700; letter-spacing:.04em; color:var(--yellow);}
+  .copy-btn{background:var(--yellow); color:#1a1a1a; border:none; border-radius:7px; font-weight:700; font-size:0.82rem; padding:6px 16px; cursor:pointer; transition:.15s;}
+  .copy-btn:hover{filter:brightness(.94);}
+  .copy-btn.done{background:#7bd88f;}
+  .prompt-text{padding:16px 18px; font-size:0.98rem; white-space:pre-wrap;}
+  .prompt-text .ph{background:var(--yellow); color:#1a1a1a; padding:1px 6px; border-radius:5px; font-weight:600;}
+
+  .think{border-radius:10px; padding:12px 16px; margin-top:8px; font-size:0.96rem; background:var(--yellow); border-left:6px solid #1a1a1a;}
+  .think .tag{display:inline-block; font-size:0.74rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; margin-bottom:4px; color:#1a1a1a;}
+  .think p{margin:2px 0 0;}
+
+  footer{margin-top:40px; padding-top:18px; border-top:1px solid #e4e2da; color:var(--muted); font-size:0.92rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Applying PAGES and CALM to Your Problem</h1>
+    <p class="sub">Follow the steps to rethink your own leadership problem. The goal isn't a solution; it's to help you think creatively about your problem, in ways you haven't yet.</p>
+  </header>
+
+  <div class="keys">
+    <div class="key">
+      <div class="key-title">PAGES</div>
+      <ul>
+        <li><span class="ltr">P</span> Parts</li>
+        <li><span class="ltr">A</span> Actions</li>
+        <li><span class="ltr">G</span> Goals</li>
+        <li><span class="ltr">E</span> Events</li>
+        <li><span class="ltr">S</span> Selves</li>
+      </ul>
+    </div>
+    <div class="key">
+      <div class="key-title">CALM</div>
+      <ul>
+        <li><span class="ltr">C</span> Combine</li>
+        <li><span class="ltr">A</span> Appropriate</li>
+        <li><span class="ltr">L</span> Limit</li>
+        <li><span class="ltr">M</span> Mess</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>How to read this page</strong>
+    <ul>
+      <li><span class="chip paste">Copy</span><span><b>Dark card with a Copy button</b> → paste it into the AI.</span></li>
+      <li><span class="chip think">Read</span><span><b>Bright-yellow callout</b> → guidance for you. Don't paste it.</span></li>
+      <li><span class="chip" style="background:#eee;color:#555;">⟨ ⟩</span><span>Text highlighted <span class="ph-demo">⟨like this⟩</span> → swap in your own before you send.</span></li>
+    </ul>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step"><span class="n">1</span><span class="t"><b>Set up &amp; map</b>Paste your problem; the AI maps it in PAGES.</span></div>
+    <div class="flow-step"><span class="n">2</span><span class="t"><b>Change your PAGES</b>Run a tool to shift an element — stay CALM.</span></div>
+    <div class="flow-step"><span class="n">3</span><span class="t"><b>Summarize</b>Capture what shifted.</span></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="section-label">Step 1 · Start here</div>
+  <div class="step">
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">I want to use you as a thinking partner to rethink a leadership problem I'm facing. Here it is:
+
+<span class="ph">⟨paste your problem⟩</span>
+
+Ground rules for our whole conversation: don't give me advice or solutions — help me SEE the problem in new ways, and keep each point to one tight line. And for every tool I give you later, dig: don't stop at your first idea — think through several possibilities, then give me four, one line each, plus one that's genuinely surprising, and name the assumption each one challenges.
+
+Here's how the framework works, in one example. Take a shoe: Parts (laces, sole), Actions (support, grip), Goal (getting around comfortably), Event (a morning commute), Self (an average commuter). Change one element — make the Self a ballerina — and the rest snaps with it: the Parts become satin and a hard toe, the Action becomes balancing on point, the Event becomes a stage. Change one element and you change how you see all the others. That's what we'll do to my problem.
+
+First, mirror it back: restate my problem in your own words so I know you've got it.
+
+Then map it with PAGES. PAGES isn't a list — it's a sentence: a Self takes Actions on Parts to attain Goals within an Event. Write that sentence for each key player in my situation — always me, plus each of the other people or groups involved (however many there are, usually one to three). For each player give a short, coherent picture: their Parts (what they're working with, tangible and intangible), Actions (what they're doing), Goals (what they're really after, including the unspoken), Event (the situation as they experience it), Self (how they see themselves here). Keep each player's picture coherent — not loose lists — and bold the five element tags (Parts, Actions, Goals, Event, Self) where they appear so the structure is easy to scan.
+
+Then do three things: show me where these framings collide (that collision is probably the real problem); point out that the way I described my problem is just one of these framings — mine; and name the single biggest assumption baked into my framing that might not be true.
+
+After that I'll start giving you tools. Aim them at the PAGES elements and at my assumptions, especially where the framings collide.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="section-label">Step 2 · Change your PAGES</div>
+  <div class="think">
+    <span class="tag">📖 How to keep CALM and change the PAGES</span>
+    <p>Below you will find prompts that directly change PAGES or put a CALM tool (Combine, Appropriate, Limit, Mess) to work. Run them in any order, as many times as you like; there's no set path, and you won't reach them all. Each one digs (four options plus a surprising one), so go deeper on fewer. You can adapt or change them as needed. Push back when the AI goes flat or slips into advice. Want a tool aimed at one part of your map? Add "focus on the Goal X" (or the Self, the Event…). If a tool ever gets blocked, soften the wording or skip to another — you didn't break anything.</p>
+  </div>
+
+  <div class="step">
+    <div class="tool-label">Surface my assumptions</div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Surface my assumptions. Go through my PAGES map and name the assumptions baked into it — the things I'm treating as fixed. List several, one line each, and flag the two that would change everything if they turned out to be false. Don't challenge them yet — just expose them clearly.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label">Change the default <span class="fw">· flip an assumption</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Change the default. Pick one assumption I'm making — from your list or the map — and flip it: what does the problem become if it's wrong? Then try the opposite of my main goal. Give me four framings these open up, one line each, plus one that's genuinely surprising, and name the assumption each one breaks. Reframe, don't advise.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label">Change the Selves <span class="fw">· swap who's in it</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Change the Selves. Change who the players are or how they see themselves — swap a Self in my map for a surprising one (a rival, a newcomer, a mentor, someone who'd find this easy), or shift how someone already in it sees themselves. Give me four, one line each, plus one that's genuinely surprising; for each, say what changes about the problem and which of my assumptions it rejects. Don't solve it — just change the Selves.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label"><span class="fw">C ·</span> Combine <span class="fw">· a Part or Action</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Combine. Fuse one Part or Action from my map with something it has nothing to do with — a sport, a recipe, a festival, a road trip. Give me four mash-ups, one line each, plus one that's genuinely surprising, and for the sharpest one name the assumption it breaks. Reframe, don't advise.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label"><span class="fw">A ·</span> Appropriate <span class="fw">· a Goal or Event</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Appropriate. Compare across worlds. How is my situation like something in a completely different domain — running a kitchen, coaching a team, tending a garden, hosting a dinner? Give me four such comparisons aimed at a Goal or Event in my map, one line each, plus one that's genuinely surprising; for each, say what the comparison reveals that my framing hides and which assumption it breaks. Reframe, don't advise.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label"><span class="fw">L ·</span> Limit <span class="fw">· a Part or Action</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Limit. Take away a Part or Action I assume I need — time, a resource, my usual approach, a teammate's help. Give me four versions, one line each, plus one that's genuinely surprising; for each, name the assumption the missing piece reveals and the new direction it opens. Reframe, don't advise.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tool-label"><span class="fw">M ·</span> Mess <span class="fw">· random into your PAGES</span></div>
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Mess. Drop a random word or object into one of my PAGES elements and force the collision. Give me four framings, one line each, plus one that's genuinely surprising, and for the strangest one name the assumption it knocks loose. Reframe, don't advise.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="section-label">Step 3 · Summarize</div>
+  <p class="section-note">When you're ready, or when time is called, run this one.</p>
+  <div class="step">
+    <div class="paste">
+      <div class="head"><span class="tag">📋 Paste into the AI</span><button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt-text">Before I stop: recap the different ways we reframed my problem, the assumptions we challenged, and the new directions I hadn't considered when we started. Keep it short.</div>
+    </div>
+  </div>
+
+  <footer>When the time is up, turn to your group for Part 2 — you'll talk through how your thinking shifted. No need to write anything up; just scroll back through your chat.</footer>
+</div>
+
+<script>
+function copyPrompt(btn){
+  var text = btn.closest('.paste').querySelector('.prompt-text').innerText;
+  navigator.clipboard.writeText(text).then(function(){
+    var orig = btn.textContent;
+    btn.textContent = "Copied ✓";
+    btn.classList.add('done');
+    setTimeout(function(){ btn.textContent = orig; btn.classList.remove('done'); }, 1600);
+  });
+}
+</script>
+</body>
+</html>

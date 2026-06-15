@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Change the PAGES — The Southwest Airlines Case</title>
+<style>
+  :root{
+    --bg:#faf9f6; --ink:#1a1a1a; --muted:#5b5b5b;
+    --yellow:#ffd400; --accent:#b89a00;
+    --right:#2e7d32; --right-bg:#eaf6ea; --wrong:#c0392b; --wrong-bg:#fbeae8;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; padding:32px 18px 80px;}
+  .wrap{max-width:760px; margin:0 auto;}
+  header h1{font-size:1.85rem; margin:0 0 6px; line-height:1.15;}
+  header .sub{color:var(--muted); margin:0 0 22px; font-size:1.02rem;}
+
+  .key{background:#fff; border:1px solid #e4e2da; border-radius:12px; padding:12px 16px; margin-bottom:14px;}
+  .key-title{font-size:0.78rem; font-weight:800; letter-spacing:.12em; color:var(--muted); margin-bottom:8px;}
+  .key ul{margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px 18px;}
+  .key li{display:flex; align-items:center; gap:8px; font-size:0.95rem;}
+  .key li .ltr{flex:none; width:24px; height:24px; border-radius:6px; background:var(--yellow); color:#1a1a1a; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:0.86rem;}
+
+  .legend{background:var(--yellow); border-left:6px solid #1a1a1a; border-radius:10px; padding:12px 16px; margin-bottom:26px; font-size:0.95rem;}
+  .legend b{font-weight:800;}
+
+  .case{background:#fff; border:1px solid #e4e2da; border-radius:14px; padding:18px 20px; margin:20px 0; box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  .case.worked{border:2px solid var(--yellow);}
+  .case-head{display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .case-num{flex:none; width:30px; height:30px; border-radius:50%; background:#1a1a1a; color:var(--yellow); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:0.95rem;}
+  .case-title{font-size:1.12rem; font-weight:800;}
+  .badge{font-size:0.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:var(--yellow); color:#1a1a1a; padding:3px 8px; border-radius:20px;}
+  .story{margin:4px 0 14px; font-size:0.98rem;}
+
+  .q{margin:14px 0;}
+  .q-prompt{font-weight:700; margin:0 0 8px; font-size:0.98rem;}
+  .opt{display:block; width:100%; text-align:left; background:#fff; border:1.5px solid #d9d7cf; border-radius:9px; padding:10px 14px; margin:6px 0; cursor:pointer; font-size:0.95rem; font-family:inherit; color:var(--ink); transition:.12s;}
+  .opt:hover{border-color:#1a1a1a;}
+  .opt.locked{cursor:default;}
+  .opt.correct{border-color:var(--right); background:var(--right-bg);}
+  .opt.wrong{border-color:var(--wrong); background:var(--wrong-bg);}
+  .opt .mark{font-weight:800; margin-right:6px;}
+  .opt.correct .mark::before{content:"✓ "; color:var(--right);}
+  .opt.wrong .mark::before{content:"✗ "; color:var(--wrong);}
+
+  .fb{display:none; margin-top:8px; font-size:0.92rem; padding:10px 13px; border-radius:8px; background:#fff8d6; border-left:5px solid var(--yellow);}
+  .fb.show{display:block;}
+
+  .takeaway{display:none; margin-top:16px; padding:14px 16px; border-radius:10px; background:#23272e; color:#f4f4f4;}
+  .takeaway.show{display:block;}
+  .case.worked .takeaway{display:block;}
+  .takeaway .dc{font-size:0.98rem;}
+  .takeaway .dc b{color:var(--yellow);}
+  .takeaway .cascade{margin-top:8px; font-size:0.92rem; color:#d7d7d7;}
+  .takeaway .cascade b{color:var(--yellow);}
+  .elem-pill{display:inline-block; background:var(--yellow); color:#1a1a1a; font-weight:800; padding:2px 9px; border-radius:6px; font-size:0.86rem; margin-bottom:8px;}
+
+  .nudge{font-weight:700; margin:26px 0 0;}
+
+  .summary{margin-top:44px;}
+  .summary h2{font-size:1.2rem; margin:0 0 4px;}
+  .summary .s-note{color:var(--muted); font-size:0.92rem; margin:0 0 14px;}
+  table{width:100%; border-collapse:collapse; background:#23272e; color:#f4f4f4; border-radius:12px; overflow:hidden;}
+  th,td{text-align:left; padding:11px 13px; font-size:0.92rem; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.08);}
+  th{color:var(--yellow); font-size:0.78rem; letter-spacing:.04em; text-transform:uppercase;}
+  td .el{font-weight:800; color:var(--yellow);}
+  tr:last-child td{border-bottom:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>How to Change the PAGES: The Southwest Airlines Case</h1>
+    <p class="sub">Every Southwest move broke a default assumption the whole industry took for granted. Your job: name the assumption, then decide which PAGES element we can read as the lever — the one they changed first, that forced the rest to be rethought.</p>
+  </header>
+
+  <div class="key">
+    <div class="key-title">PAGES</div>
+    <ul>
+      <li><span class="ltr">P</span> Parts</li>
+      <li><span class="ltr">A</span> Actions</li>
+      <li><span class="ltr">G</span> Goals</li>
+      <li><span class="ltr">E</span> Events</li>
+      <li><span class="ltr">S</span> Selves</li>
+    </ul>
+  </div>
+
+  <div class="legend">
+    <b>How this works:</b> read each story, then click an answer. It turns <span style="color:#1b5e20;font-weight:700;">green</span> if it fits and tells you why — click around to compare the options. The first one is worked out as a model.
+  </div>
+
+  <!-- CASE 1 — WORKED -->
+  <div class="case worked">
+    <div class="case-head">
+      <span class="case-num">1</span>
+      <span class="case-title">The $10 Late-Night Fare</span>
+      <span class="badge">Worked example</span>
+    </div>
+    <p class="story">In 1971 most Americans had never set foot on a plane. Flying was a premium service, priced and sold to business travelers and the wealthy. Southwest had empty planes on late-night runs back for maintenance — so it sold those seats for $10, and in walked a brand-new kind of flyer: people who'd otherwise have taken a Greyhound bus.</p>
+
+    <div class="q">
+      <p class="q-prompt">What did the whole industry assume? <span style="color:var(--right);font-weight:700;">(answer shown)</span></p>
+      <button class="opt locked correct"><span class="mark"></span>Air travel is a premium service — the customer is the business traveler and the wealthy.</button>
+      <div class="fb show">This is a belief about <b>who flies</b>. Southwest didn't accept that the customer base was fixed.</div>
+    </div>
+
+    <div class="q">
+      <p class="q-prompt">Which PAGES element can we read as the lever — the one whose change forced the rest to be rethought? <span style="color:var(--right);font-weight:700;">(answer shown)</span></p>
+      <button class="opt locked correct"><span class="mark"></span><b>S — Selves.</b> Who the customer is.</button>
+      <div class="fb show">Start by redefining the customer from "a premium flyer" to "anyone who'd take a bus," and you're forced to rebuild the whole offer around them.</div>
+    </div>
+
+    <div class="takeaway">
+      <span class="elem-pill">S · Selves</span>
+      <div class="dc"><b>Default → Change:</b> Customer = a business traveler who can afford premium fares → anyone who could take a Greyhound bus.</div>
+      <div class="cascade"><b>Cascade:</b> change who the customer is (Self), and you have to rework the rest to reach them — a new <b>Goal</b> (fill empty seats, not serve premium flyers), a new <b>Part</b> (a $10 price instead of a premium fare), and a new <b>Event</b> (off-peak late-night flights).</div>
+    </div>
+  </div>
+
+  <p class="nudge">Now you try the next three. Name the assumption, then choose the element.</p>
+
+  <!-- CASE 2 — 10-MIN TURN -->
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">2</span>
+      <span class="case-title">The 10-Minute Turn</span>
+    </div>
+    <p class="story">Across the industry, turning a plane around — unloading, cleaning, reloading — took 25 minutes or more, handled by a dedicated ground crew. Then Southwest was forced to sell one of its four planes to stay afloat. Somehow it kept the exact same flight schedule with only three.</p>
+
+    <div class="q">
+      <p class="q-prompt">What did the industry take for granted?</p>
+      <button class="opt" data-correct="true" data-fb="Right — everyone took the 25-minute turnaround as a fact of life, a job left to the dedicated ground crew. Southwest set a 10-minute goal and rethought everything needed to hit it."><span class="mark"></span>A turnaround — unloading, cleaning, reloading — simply takes 25+ minutes; it's the dedicated ground crew's job.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the belief behind <b>open seating</b>, coming up next. This story is about how fast a plane can be turned around."><span class="mark"></span>Passengers need assigned seats for orderly boarding.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the belief behind the <b>$10 fare</b> you just saw. This one is about the turnaround."><span class="mark"></span>Air travel is a premium service for business travelers and the wealthy.</button>
+    </div>
+
+    <div class="q q-element">
+      <p class="q-prompt">Which PAGES element can we read as the lever — the one whose change forced the rest to be rethought?</p>
+      <button class="opt" data-correct="false" data-fb="Not the lever — they actually had <i>fewer</i> planes. What changed was the target they set for the turnaround."><span class="mark"></span>P — Parts</button>
+      <button class="opt" data-correct="false" data-fb="Close — the crew did clean the plane in new ways (an <b>Action</b>), but we can read that as one of the changes the new target <i>forced</i>. The cleaner lever to name is the Goal: 10 minutes."><span class="mark"></span>A — Actions</button>
+      <button class="opt" data-correct="true" data-fb="Yes — we can read the <b>Goal</b> as the lever: the turnaround target, reset from 25+ minutes to 10. That target is impossible the old way, so it forces you to change everything else."><span class="mark"></span>G — Goals</button>
+      <button class="opt" data-correct="false" data-fb="Not here — the event (a turnaround between flights) is the same; the target set for it changed."><span class="mark"></span>E — Events</button>
+      <button class="opt" data-correct="false" data-fb="Not the starting lever — but rethinking who does the work is one of the changes the new goal forces. Hold that thought."><span class="mark"></span>S — Selves</button>
+    </div>
+
+    <div class="takeaway">
+      <span class="elem-pill">G · Goals</span>
+      <div class="dc"><b>Default → Change:</b> Turnaround goal = clean and reload in 25+ minutes → do it in 10.</div>
+      <div class="cascade"><b>Cascade:</b> a 10-minute goal doesn't fix anything by itself — it's impossible the old way, so it forces you to ask what else has to change to hit it. New <b>Actions</b> (everyone cleans and preps, not just a dedicated crew), and even who's on the team: Southwest hired people willing to pitch in, not veteran pilots who'd think cleaning the plane was beneath them (<b>Selves</b>) — all in the same <b>Event</b>.</div>
+    </div>
+  </div>
+
+  <!-- CASE 3 — OPEN SEATING -->
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">3</span>
+      <span class="case-title">Open Seating</span>
+    </div>
+    <p class="story">Other airlines used assigned seats and complex boarding sequences (back-to-front), which often jammed the aisle as people hunted for their exact seat. Southwest dropped assigned seats entirely — passengers sit wherever they like, in the order they arrive.</p>
+
+    <div class="q">
+      <p class="q-prompt">What did the industry take for granted?</p>
+      <button class="opt" data-correct="true" data-fb="Right — everyone assumed orderly boarding <i>needs</i> assigned seats. Drop them and boarding can get faster, not slower."><span class="mark"></span>Passengers need assigned seats for orderly, efficient boarding.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the <b>10-minute-turn</b> story. This one is about seats and boarding."><span class="mark"></span>A turnaround just takes 25+ minutes, handled by the ground crew.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the <b>single-fleet</b> story coming up. This one is about assigned seats."><span class="mark"></span>Different routes need different types of aircraft.</button>
+    </div>
+
+    <div class="q q-element">
+      <p class="q-prompt">Which PAGES element can we read as the lever — the one whose change forced the rest to be rethought?</p>
+      <button class="opt" data-correct="true" data-fb="Yes — we can read a <b>Part</b> as the lever: the seat assignment. Remove it and you have to rework everything downstream."><span class="mark"></span>P — Parts</button>
+      <button class="opt" data-correct="false" data-fb="Close — boarding (an <b>Action</b>) does change, but we can read that as one of the changes dropping the assignment <i>forces</i>. The starting lever is the Part: the seats."><span class="mark"></span>A — Actions</button>
+      <button class="opt" data-correct="false" data-fb="Not the lever — the goal (board fast, fly cheap) is the same; the seat assignment is what changed."><span class="mark"></span>G — Goals</button>
+      <button class="opt" data-correct="false" data-fb="Not here — same event (boarding a flight); the seats changed."><span class="mark"></span>E — Events</button>
+      <button class="opt" data-correct="false" data-fb="Not the starting lever — but you do have to ask passengers to think about themselves differently, which is one of the changes it forces."><span class="mark"></span>S — Selves</button>
+    </div>
+
+    <div class="takeaway">
+      <span class="elem-pill">P · Parts</span>
+      <div class="dc"><b>Default → Change:</b> Seats = pre-assigned numbers → no assignments; passengers board and grab any open seat.</div>
+      <div class="cascade"><b>Cascade:</b> drop the seat assignment (Part) and you're forced to rework boarding into a first-come scramble (<b>Action</b>) — which means inventing new <b>Parts</b> (boarding-order groups like A/B/C) and asking passengers to see themselves differently: not as someone who bought a seat, but as someone who bought the right to board and find one (<b>Self</b>).</div>
+    </div>
+  </div>
+
+  <!-- CASE 4 — SINGLE-TYPE FLEET -->
+  <div class="case">
+    <div class="case-head">
+      <span class="case-num">4</span>
+      <span class="case-title">The Single-Type Fleet</span>
+    </div>
+    <p class="story">After deregulation in 1978, competitors bought different aircraft for different routes — small planes for short hops, big ones for busy corridors — and pushed everyone through major hubs. Southwest flew only the Boeing 737, on every route, into smaller and cheaper airports.</p>
+
+    <div class="q">
+      <p class="q-prompt">What did the industry take for granted?</p>
+      <button class="opt" data-correct="true" data-fb="Right — the industry matched aircraft to routes and chased big hubs. Southwest flew one type into secondary airports."><span class="mark"></span>Different routes need different aircraft, and the big airports are where the passengers are.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the <b>10-minute turn</b>. This one is about <i>types</i> of aircraft and which airports to use."><span class="mark"></span>A turnaround just takes 25+ minutes, handled by the ground crew.</button>
+      <button class="opt" data-correct="false" data-fb="Not here — that's the <b>$10 fare</b>. This one is about the fleet and the airports."><span class="mark"></span>Air travel is a premium service for business travelers and the wealthy.</button>
+    </div>
+
+    <div class="q q-element">
+      <p class="q-prompt">Which PAGES element can we read as the lever — the one whose change forced the rest to be rethought?</p>
+      <button class="opt" data-correct="true" data-fb="Yes — we can read a <b>Part</b> as the lever: the aircraft (one type, the 737) and the airports. Standardize the Part and you can deliberately simplify everything around it."><span class="mark"></span>P — Parts</button>
+      <button class="opt" data-correct="false" data-fb="Good instinct — maintenance and training (<b>Actions</b>) get far simpler, but we can read that as a change the single fleet makes possible. The starting lever is the Part: one plane type."><span class="mark"></span>A — Actions</button>
+      <button class="opt" data-correct="false" data-fb="Not the lever — the goal (cheap and reliable) holds; the fleet is what changed."><span class="mark"></span>G — Goals</button>
+      <button class="opt" data-correct="false" data-fb="Partly — smaller airports do shift the <b>Event</b>, but we can read the core lever as the Part: the single fleet."><span class="mark"></span>E — Events</button>
+      <button class="opt" data-correct="false" data-fb="Not the starting lever here."><span class="mark"></span>S — Selves</button>
+    </div>
+
+    <div class="takeaway">
+      <span class="elem-pill">P · Parts</span>
+      <div class="dc"><b>Default → Change:</b> Aircraft = different types for different routes, flown through big hubs → one type (the Boeing 737), into smaller, cheaper airports.</div>
+      <div class="cascade"><b>Cascade:</b> standardize on one 737 (Part) and you can deliberately simplify the rest — train every pilot on every plane and every mechanic on every system (<b>Actions</b>), and staff with interchangeable crews (<b>Selves</b>).</div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <h2>Putting it together</h2>
+    <p class="s-note">One company, four moves — each one changed a single PAGES element first, then reworked the rest to make it work.</p>
+    <table>
+      <tr><th>Innovation</th><th>Element</th><th>Default → Change</th></tr>
+      <tr><td>The $10 Late-Night Fare</td><td class="el">S</td><td>Customer = premium business traveler → anyone who'd take a Greyhound bus</td></tr>
+      <tr><td>The 10-Minute Turn</td><td class="el">G</td><td>Turnaround goal = 25+ minutes → 10 minutes</td></tr>
+      <tr><td>Open Seating</td><td class="el">P</td><td>Seats = pre-assigned numbers → no assignments, board and choose</td></tr>
+      <tr><td>Single-Type Fleet</td><td class="el">P</td><td>Aircraft = many types via big hubs → one 737 into smaller airports</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.q').forEach(function(q){
+  if(q.querySelector('.opt.locked')) return; // worked example is static
+  var fb = q.querySelector('.fb');
+  if(!fb){ fb = document.createElement('div'); fb.className = 'fb'; q.appendChild(fb); }
+  q.querySelectorAll('.opt').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      q.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('correct','wrong'); });
+      var correct = opt.dataset.correct === 'true';
+      opt.classList.add(correct ? 'correct' : 'wrong');
+      fb.innerHTML = opt.dataset.fb;
+      fb.classList.add('show');
+      if(correct && q.classList.contains('q-element')){
+        var tk = q.closest('.case').querySelector('.takeaway');
+        if(tk) tk.classList.add('show');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

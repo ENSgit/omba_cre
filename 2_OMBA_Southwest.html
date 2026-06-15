@@ -60,7 +60,8 @@
 
   .nudge{font-weight:700; margin:26px 0 0;}
 
-  .summary{margin-top:44px;}
+  .summary{margin-top:44px; display:none;}
+  .summary.show{display:block;}
   .summary h2{font-size:1.2rem; margin:0 0 4px;}
   .summary .s-note{color:var(--muted); font-size:0.92rem; margin:0 0 14px;}
   table{width:100%; border-collapse:collapse; background:#23272e; color:#f4f4f4; border-radius:12px; overflow:hidden;}
@@ -216,9 +217,9 @@
   </div>
 
   <!-- SUMMARY -->
-  <div class="summary">
+  <div class="summary" id="summary">
     <h2>Putting it together</h2>
-    <p class="s-note">One company, four moves — each one changed a single PAGES element first, then reworked the rest to make it work.</p>
+    <p class="s-note">We can explain each Southwest's innovation with a change to a default assumption in one of the PAGES elements that then cascades to a new creative implementation.</p>
     <table>
       <tr><th>Innovation</th><th>Element</th><th>Default → Change</th></tr>
       <tr><td>The $10 Late-Night Fare</td><td class="el">S</td><td>Customer = premium business traveler → anyone who'd take a Greyhound bus</td></tr>
@@ -244,6 +245,9 @@ document.querySelectorAll('.q').forEach(function(q){
       if(correct && q.classList.contains('q-element')){
         var tk = q.closest('.case').querySelector('.takeaway');
         if(tk) tk.classList.add('show');
+        if(document.querySelectorAll('.takeaway.show').length === 3){
+          document.getElementById('summary').classList.add('show');
+        }
       }
     });
   });
